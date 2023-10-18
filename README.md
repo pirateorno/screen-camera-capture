@@ -23,6 +23,21 @@ remote_server_screen_url = 'http://verycoolIP:20015/screen_feed'
 6. Start your server and build client.pyw
 7. Send client.exe to your friend
 
+### requirements.txt for server:
+```python
+Flask==3.0.0
+opencv-python==4.8.1.78
+blinker==1.6.2
+itsdangerous==2.1.2
+MarkupSafe==2.1.3
+Jinja2==3.1.2
+click==8.1.7
+watchdog==3.0.0
+Werkzeug==3.0.0
+Pillow==10.0.1
+```
+
+
 ### How to close it, 2 ways:
 1. In the task manager, close client.exe (or something similar)
 2. Restart your computer.
