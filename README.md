@@ -43,8 +43,10 @@ Pillow==10.0.1
 2. Restart your computer.
 
 ### Some errors:
-1. If you don't have a camera, the programme will not work
-2. If you have bad internet, the app will not work
+1. If client don't have a camera, the program will not work
+2. If client have bad internet, the prpgram will not work
+3. if client dont have camera program will not work
+4. if client.exe (client.py or client.pyw) is opened by two or more users, the program will not work (I think I will not fix it)
 
 That's all, sorry for my bad English.
 # AND REMEMBER THIS IS FOR EDUCATIONAL PURPOSES ONLY.
