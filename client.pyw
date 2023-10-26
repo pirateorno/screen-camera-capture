@@ -5,8 +5,8 @@ from PIL import Image
 import numpy as np
 
 # URL удаленного сервера, на который будет отправляться видеопоток
-remote_server_camera_url = 'SERVERIP:PORT'
-remote_server_screen_url = 'SERVERIP:PORT'
+remote_server_camera_url = 'http://IP:PORT/video_feed'
+remote_server_screen_url = 'http://IP:PORT/screen_feed'
 
 # Инициализация камеры
 camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
