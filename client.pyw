@@ -1,39 +1,34 @@
 import cv2
 import requests
 import pyautogui
-from PIL import Image
 import numpy as np
 
-# URL удаленного сервера, на который будет отправляться видеопоток
-remote_server_camera_url = 'http://IP:PORT/video_feed'
-remote_server_screen_url = 'http://IP:PORT/screen_feed'
+# Write here your server ip
+remote_server = ''
 
-# Инициализация камеры
+# camera initialization
 camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 while True:
     success, frame = camera.read()
     myScreenshot = pyautogui.screenshot()
 
-    # Convert the PIL image to a NumPy array
     myScreenshot_np = np.array(myScreenshot)
 
-    #myScreenshot.save(r'screenshot.jpg')
     if not success:
         break
 
-    # Преобразование кадра в формат JPEG
+    # images to .jpg
     _, img_encoded = cv2.imencode('.jpg', frame)
     _, screen_encoded = cv2.imencode('.jpg', myScreenshot_np)  # Use the NumPy array
 
-    # Отправка кадра на удаленный сервер
-    img_response = requests.post(remote_server_camera_url, data=img_encoded.tobytes(), headers={'Content-Type': 'image/jpg'})
-    screen_response = requests.post(remote_server_screen_url, data=screen_encoded.tobytes(), headers={'Content-Type': 'image/jpg'})
+    # sending frames to server
+    img_response = requests.post(f'http://{remote_server}/video_feed', data=img_encoded.tobytes(), headers={'Content-Type': 'image/jpg'})
+    screen_response = requests.post(f'http://{remote_server}/screen_feed', data=screen_encoded.tobytes(), headers={'Content-Type': 'image/jpg'})
 
     if img_response.status_code != 200:
-        print(f"Ошибка при отправке кадра на сервер: {img_response.status_code}")
+        print(f"Error when sending a frame to the server: {img_response.status_code}")
     if screen_response.status_code != 200:
-        print(f"Ошибка при отправке скрина на сервер: {screen_response.status_code}")
+        print(f"Error when sending a screenshot to the server: {screen_response.status_code}")
 
-# Закрыть камеру
 camera.release()
