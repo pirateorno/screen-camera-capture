@@ -4,14 +4,11 @@
     <title>Video Feed</title>
 </head>
 <body>
-    <img id="video-feed" src="/get_video_frame" alt="Video Feed">
+    <img id="camera-feed" src="/get_camera_frame" alt="Video Feed">
 
     <!-- Поле ввода для скорости обновления -->
     <label for="update-interval">Скорость обновления (в миллисекундах):</label>
     <input type="number" id="update-interval" value="1000">
-
-    <!-- Кнопка для одноразового обновления -->
-    <button id="refresh-button">Обновить один раз</button>
 
     <br>
     <br>
@@ -22,65 +19,30 @@
     <label for="screen-update-interval">Скорость обновления (в миллисекундах):</label>
     <input type="number" id="screen-update-interval" value="1000">
 
-    <!-- Кнопка для одноразового обновления -->
-    <button id="screen-refresh-button">Обновить один раз</button>
 
     <script>
         // Функция для автоматического обновления изображения
         function autoRefresh() {
-            const img = document.getElementById('video-feed');
+            const img = document.getElementById('camera-feed');
             const intervalInput = document.getElementById('update-interval');
-            const refreshButton = document.getElementById('refresh-button');
 
-            const updateInterval = parseInt(intervalInput.value); // Получаем значение интервала из поля ввода
-            img.src = "/get_video_frame?" + new Date().getTime(); // Добавляем случайный параметр, чтобы обновить кэш
+            const updateInterval = parseInt(intervalInput.value);
+            img.src = "/get_camera_frame?" + new Date().getTime();
 
-            setTimeout(autoRefresh, updateInterval); // Обновляем изображение с учетом введенного интервала
+            setTimeout(autoRefresh, updateInterval);
         }
-
-        // Функция для одноразового обновления по нажатию кнопки
-        function refreshOnce() {
-            const img = document.getElementById('video-feed');
-            img.src = "/get_video_frame?" + new Date().getTime(); // Обновляем изображение один раз снова
-
-        }
-
-        // Начать автоматическое обновление изображения
         autoRefresh();
 
-        // Добавляем обработчик события для кнопки
-        const refreshButton = document.getElementById('refresh-button');
-        refreshButton.addEventListener('click', refreshOnce);
-
-
-
-
-
-        // Функция для автоматического обновления изображения
         function screenAutoRefresh() {
             const screenimg = document.getElementById('screen-feed');
             const screenintervalInput = document.getElementById('screen-update-interval');
-            const screenrefreshButton = document.getElementById('screen-refresh-button');
-
             const screenupdateInterval = parseInt(screenintervalInput.value); // Получаем значение интервала из поля ввода
             screenimg.src = "/get_screen_frame?" + new Date().getTime(); // Добавляем случайный параметр, чтобы обновить кэш
 
             setTimeout(screenAutoRefresh, screenupdateInterval); // Обновляем изображение с учетом введенного интервала
         }
-
-        // Функция для одноразового обновления по нажатию кнопки
-        function screenrefreshOnce() {
-            const screenimg = document.getElementById('screen-feed');
-            screenimg.src = "/get_screen_frame?" + new Date().getTime(); // Обновляем изображение один раз снова
-
-        }
-
-        // Начать автоматическое обновление изображения
         screenAutoRefresh();
 
-        // Добавляем обработчик события для кнопки
-        const screenrefreshButton = document.getElementById('screen-refresh-button');
-        screenrefreshButton.addEventListener('click', screenrefreshOnce);
     </script>
 </body>
 </html>
