@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd7ee550-fcca-49a2-9aea-8ef065c2c661" name="Changes" comment="test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client.pyw" beforeDir="false" afterPath="$PROJECT_DIR$/client.pyw" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/video_feed.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/video_feed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/video_feed.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v1/client.pyw" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/v1/output/game.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/v1/server.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/v1/templates/video_feed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/v2/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -67,6 +69,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -75,6 +78,8 @@
       <recent name="C:\NeWindows\Scripts\pythin\virus\output\data\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\NeWindows\Scripts\pythin\virus\templates" />
+      <recent name="C:\NeWindows\Scripts\pythin\virus\clients" />
       <recent name="C:\NeWindows\Scripts\pythin\virus\output" />
       <recent name="C:\NeWindows\pythin\virus\templates" />
     </key>
@@ -125,6 +130,21 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Flask (server.py)" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
+      <module name="virus" />
+      <option name="target" value="$PROJECT_DIR$/server.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
     <configuration name="virus" type="Python.FlaskServer">
       <module name="virus" />
       <option name="target" value="$PROJECT_DIR$/server.py" />
@@ -132,7 +152,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -140,6 +160,11 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Flask server.Flask (server.py)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -154,7 +179,7 @@
       <workItem from="1701599046949" duration="4567000" />
       <workItem from="1701681285742" duration="21000" />
       <workItem from="1702326270874" duration="41000" />
-      <workItem from="1703093051181" duration="1745000" />
+      <workItem from="1703093051181" duration="6135000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696923485945</created>
@@ -207,7 +232,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/virus$virus.coverage" NAME="virus Coverage Results" MODIFIED="1703093072157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/virus$Flask__server_py_.coverage" NAME="Flask (server.py) Coverage Results" MODIFIED="1703094770345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/virus$client_pyw.coverage" NAME="client.pyw Coverage Results" MODIFIED="1703094775866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$Flask__server_py_.coverage" NAME="Flask (server.py) Coverage Results" MODIFIED="1703098666005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/virus$client_pyw.coverage" NAME="client.pyw Coverage Results" MODIFIED="1703098668669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

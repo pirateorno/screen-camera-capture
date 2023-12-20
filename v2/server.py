@@ -23,7 +23,7 @@ def video_feed():
         # Отправляем ответ обратно клиенту
         return Response(status=200)
 
-    return render_template('video_feed.html')
+    return render_template('../clients/../templates/client1.html')
 
 @app.route('/get_video_frame', methods=['GET'])
 def get_video_frame():

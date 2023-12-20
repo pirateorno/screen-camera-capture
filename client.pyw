@@ -2,7 +2,6 @@ import cv2
 import requests
 import pyautogui
 import numpy as np
-from PIL import Image
 
 # Write here your server ip
 remote_server = '127.0.0.1:5000'
@@ -14,6 +13,8 @@ except Exception as e:
     camera = cv2.VideoCapture('NoCamera.avi')
     print(e)
 
+clientIdreq = requests.post(f'http://{remote_server}/client')
+clientId = clientIdreq.text
 
 
 while True:
@@ -31,8 +32,8 @@ while True:
     _, screen_encoded = cv2.imencode('.jpg', myScreenshot_np)
 
     # sending frames to server
-    img_response = requests.post(f'http://{remote_server}/send_camera', data=img_encoded.tobytes(), headers={'Content-Type': 'image/jpg'})
-    screen_response = requests.post(f'http://{remote_server}/send_screen', data=screen_encoded.tobytes(), headers={'Content-Type': 'image/jpg'})
+    img_response = requests.post(f'http://{remote_server}/send_camera?id={clientId}', data=img_encoded.tobytes(), headers={'Content-Type': 'image/jpg'})
+    screen_response = requests.post(f'http://{remote_server}/send_screen?id={clientId}', data=screen_encoded.tobytes(), headers={'Content-Type': 'image/jpg'})
 
     if img_response.status_code != 200:
         print(f"Error when sending a frame to the server: {img_response.status_code}")
