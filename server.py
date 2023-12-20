@@ -3,8 +3,8 @@ import cv2
 import numpy as np
 
 app = Flask(__name__)
-last_frame = None
-screen_last_frame = None
+last_frame = {}
+screen_last_frame = {}
 
 clientsnum = 0
 clients = {}
@@ -16,6 +16,10 @@ def mainSite():
 @app.route('/clients/client1', methods=['GET'])
 def client1():
     return render_template('client1.html')
+
+@app.route('/clients/client2', methods=['GET'])
+def client2():
+    return render_template('client2.html')
 
 @app.route('/client', methods=['GET', 'POST'])
 def regclient():
@@ -36,16 +40,18 @@ def send_camera():
         frame_data = request.data
         frame = cv2.imdecode(np.frombuffer(frame_data, np.uint8), cv2.IMREAD_COLOR)
         if frame is not None:
-            last_frame = frame
+            last_frame[request.args.get('id')] = frame
 
         return Response(status=200)
 
 @app.route('/get_camera_frame', methods=['GET'])
 def get_camera_frame():
     global last_frame
-    if last_frame is not None:
-        _, encoded_frame = cv2.imencode('.jpg', last_frame)
-        return Response(encoded_frame.tobytes(), mimetype='image/jpeg')
+    if last_frame[request.args.get('id')] is not None:
+        _, encoded_frame = cv2.imencode('.jpg', last_frame[request.args.get('id')])
+        response = Response(encoded_frame.tobytes(), mimetype='image/jpeg')
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+        return response
 
     return "No frame available"
 
@@ -57,16 +63,18 @@ def send_screen():
         frame = cv2.imdecode(np.frombuffer(frame_data, np.uint8), cv2.IMREAD_COLOR)
 
         if frame is not None:
-            screen_last_frame = frame
+            screen_last_frame[request.args.get('id')] = frame
 
         return Response(status=200)
 
 @app.route('/get_screen_frame', methods=['GET'])
 def get_screen_frame():
     global screen_last_frame
-    if screen_last_frame is not None:
-        _, encoded_frame = cv2.imencode('.jpg', screen_last_frame)
-        return Response(encoded_frame.tobytes(), mimetype='image/jpeg')
+    if screen_last_frame[request.args.get('id')] is not None:
+        _, encoded_frame = cv2.imencode('.jpg', screen_last_frame[request.args.get('id')])
+        response = Response(encoded_frame.tobytes(), mimetype='image/jpeg')
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+        return response
 
     return "No frame available"
 

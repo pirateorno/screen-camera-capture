@@ -4,7 +4,7 @@
     <title>Video Feed</title>
 </head>
 <body>
-    <img id="camera-feed" src="/get_camera_frame" alt="Video Feed">
+    <img id="camera-feed" src="/get_camera_frame?id=2" alt="Video Feed">
 
     <!-- Поле ввода для скорости обновления -->
     <label for="update-interval">Скорость обновления (в миллисекундах):</label>
@@ -13,7 +13,7 @@
     <br>
     <br>
 
-    <img id="screen-feed" src="/get_screen_frame" alt="screen Feed">
+    <img id="screen-feed" src="/get_screen_frame?id=2" alt="screen Feed">
 
     <!-- Поле ввода для скорости обновления -->
     <label for="screen-update-interval">Скорость обновления (в миллисекундах):</label>
@@ -27,7 +27,7 @@
             const intervalInput = document.getElementById('update-interval');
 
             const updateInterval = parseInt(intervalInput.value);
-            img.src = "/get_camera_frame?" + new Date().getTime();
+            img.src = "/get_camera_frame?id=1";
 
             setTimeout(autoRefresh, updateInterval);
         }
@@ -37,7 +37,7 @@
             const screenimg = document.getElementById('screen-feed');
             const screenintervalInput = document.getElementById('screen-update-interval');
             const screenupdateInterval = parseInt(screenintervalInput.value); // Получаем значение интервала из поля ввода
-            screenimg.src = "/get_screen_frame?" + new Date().getTime(); // Добавляем случайный параметр, чтобы обновить кэш
+            screenimg.src = "/get_screen_frame?id=1";
 
             setTimeout(screenAutoRefresh, screenupdateInterval); // Обновляем изображение с учетом введенного интервала
         }
