@@ -5,12 +5,29 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Clients:</h1>
-    <a href="clients/client1">
-        <button>Client 1</button>
+    <h1>Hi there! There are {{ maxClients }} clients</h1>
+    <h2>Some pages:</h2>
+    <a href="client">
+        <button>View client reg page</button>
     </a>
-    <a href="clients/client2">
-        <button>Client 2</button>
+    <a href="debug">
+        <button>View debug page</button>
     </a>
+    <a href="get_camera_frame?id=EnterId">
+        <button>Get client camera (you need to enter client id in url)</button>
+    </a>
+    <a href="get_screen_frame?id=EnterId">
+        <button>Get client screen (you need to enter client id in url)</button>
+    </a>
+    <h2>Clients:</h2>
+
+    {% for x in client %}
+        <h1>{{ client[x]['clientConsole'] }}</h1>
+        <a href="clients/{{ client[x]['clientId'] }}">
+            <button>Client {{ client[x]['clientId'] }}</button>
+        </a>
+    {% endfor %}
+
+
 </body>
 </html>

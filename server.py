@@ -1,37 +1,44 @@
 from flask import Flask, request, Response, render_template
 import cv2
 import numpy as np
+from random import randint
 
 app = Flask(__name__)
 last_frame = {}
 screen_last_frame = {}
 
-clientsnum = 0
 clients = {}
 
 @app.route('/', methods=['GET'])
 def mainSite():
-    return render_template('main.html')
+    global clients
+    return render_template('main.html', client = clients)
 
-@app.route('/clients/client1', methods=['GET'])
-def client1():
-    return render_template('client1.html')
-
-@app.route('/clients/client2', methods=['GET'])
-def client2():
-    return render_template('client2.html')
+@app.route('/client/<int:clientId>', methods=['GET'])
+def client1(clientId):
+    return render_template(f'client.html', clientId = clientId)
 
 @app.route('/client', methods=['GET', 'POST'])
 def regclient():
-    global clientsnum
     global clients
+
+    clientId = 0
 
     if request.method == 'POST':
         if not request.remote_addr in clients:
-            clientsnum += 1
-            clients[request.remote_addr] = clientsnum
+            clientId = randint(1000,9999)
+            clients[request.remote_addr] = {"clientId": clientId, "clientConsole": "hit the road Jack"}
+        else:
+            print(f"{request.remote_addr} arleady in clients!")
 
-    return Response(str(clientsnum))
+        return Response(str(clientId))
+
+    if request.method == 'GET':
+        return len(clients)
+
+@app.route("/debug", methods=['GET'])
+def debugpage():
+    return f"Client: {clients}"
 
 @app.route('/send_camera', methods=['GET', 'POST'])
 def send_camera():
@@ -47,11 +54,15 @@ def send_camera():
 @app.route('/get_camera_frame', methods=['GET'])
 def get_camera_frame():
     global last_frame
-    if last_frame[request.args.get('id')] is not None:
-        _, encoded_frame = cv2.imencode('.jpg', last_frame[request.args.get('id')])
-        response = Response(encoded_frame.tobytes(), mimetype='image/jpeg')
-        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-        return response
+    try:
+        if last_frame[request.args.get('id')] is not None:
+            _, encoded_frame = cv2.imencode('.jpg', last_frame[request.args.get('id')])
+            response = Response(encoded_frame.tobytes(), mimetype='image/jpeg')
+            response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+            return response
+    except:
+        pass
+
 
     return "No frame available"
 
@@ -70,11 +81,14 @@ def send_screen():
 @app.route('/get_screen_frame', methods=['GET'])
 def get_screen_frame():
     global screen_last_frame
-    if screen_last_frame[request.args.get('id')] is not None:
-        _, encoded_frame = cv2.imencode('.jpg', screen_last_frame[request.args.get('id')])
-        response = Response(encoded_frame.tobytes(), mimetype='image/jpeg')
-        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-        return response
+    try:
+        if screen_last_frame[request.args.get('id')] is not None:
+            _, encoded_frame = cv2.imencode('.jpg', screen_last_frame[request.args.get('id')])
+            response = Response(encoded_frame.tobytes(), mimetype='image/jpeg')
+            response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+            return response
+    except:
+        pass
 
     return "No frame available"
 

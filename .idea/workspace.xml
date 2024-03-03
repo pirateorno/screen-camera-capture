@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd7ee550-fcca-49a2-9aea-8ef065c2c661" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client.pyw" beforeDir="false" afterPath="$PROJECT_DIR$/client.pyw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/client.exe" beforeDir="false" afterPath="$PROJECT_DIR$/output/client.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/client.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client2.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/client.pyw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/game.pyw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/server.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/templates/video_feed.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,39 +58,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/NeWindows/Scripts/pythin/virus",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/NeWindows/Scripts/pythin/virus/Anubis/example&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\NeWindows\Scripts\pythin\virus\Anubis\example" />
       <recent name="C:\NeWindows\Scripts\pythin\virus" />
       <recent name="C:\NeWindows\Scripts\pythin\virus\templates" />
       <recent name="C:\NeWindows\Scripts\pythin\virus\output\data\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\NeWindows\Scripts\pythin\virus\Anubis" />
       <recent name="C:\NeWindows\Scripts\pythin\virus\templates" />
       <recent name="C:\NeWindows\Scripts\pythin\virus\clients" />
       <recent name="C:\NeWindows\Scripts\pythin\virus\output" />
       <recent name="C:\NeWindows\pythin\virus\templates" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Flask server.virus">
     <configuration name="client.pyw" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="virus" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -159,6 +169,12 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Flask server.virus" />
+      <item itemvalue="Flask server.Flask (server.py)" />
+      <item itemvalue="Python.client.pyw" />
+      <item itemvalue="Python.virus" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Flask server.Flask (server.py)" />
@@ -180,6 +196,16 @@
       <workItem from="1702326270874" duration="41000" />
       <workItem from="1703093051181" duration="8767000" />
       <workItem from="1703101943897" duration="2051000" />
+      <workItem from="1703145330771" duration="3462000" />
+      <workItem from="1705353420458" duration="148000" />
+      <workItem from="1705435155085" duration="550000" />
+      <workItem from="1705595487202" duration="257000" />
+      <workItem from="1706344479094" duration="2000" />
+      <workItem from="1709112056238" duration="1034000" />
+      <workItem from="1709284780780" duration="781000" />
+      <workItem from="1709319866390" duration="4666000" />
+      <workItem from="1709378751765" duration="19000" />
+      <workItem from="1709476175761" duration="1548000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1696923485945</created>
@@ -230,19 +256,9 @@
     <MESSAGE value="test" />
     <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/server.py</url>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/virus$virus.coverage" NAME="virus Coverage Results" MODIFIED="1703093072157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/virus$Flask__server_py_.coverage" NAME="Flask (server.py) Coverage Results" MODIFIED="1703101803443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/virus$client_pyw.coverage" NAME="client.pyw Coverage Results" MODIFIED="1703103557382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$virus.coverage" NAME="virus Coverage Results" MODIFIED="1709322080562" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$Flask__server_py_.coverage" NAME="Flask (server.py) Coverage Results" MODIFIED="1709324746333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/virus$client_pyw.coverage" NAME="client.pyw Coverage Results" MODIFIED="1709322959158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

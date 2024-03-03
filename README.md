@@ -1,52 +1,39 @@
-# This script allows you to use the client's camera and screen.
+# Client Camera and Screen Viewer
 
-If you build client.pyw, it will run in the background processes.
+This script enables the utilization of the client's camera and screen.
 
-  
+Upon building client.pyw, it operates within background processes.
 
-### Tutorial:
+## Change log for version 3v:
+- Redesigned the system of IDs; now clients are assigned a 4-digit random number upon application start instead of sequential numbering.
+- Redesigned the main menu for improved clarity, displaying available pages and connected clients.
+- Redesigned the system for displaying clients, increasing the capacity from a maximum of 2 to at least 100.
+- Ongoing redesign of the client system to include a debugging console.
+- Added functionality to display a screenshot when no camera is detected.
+- Implemented a debugging page to facilitate error detection by displaying all variables in the code.
+- Fixed console spam when accessing the page of a disconnected client.
 
-1. You need a python server.
-2. You need to upload the server.py file and the templates folder to the server
-3. Then on line 65 of server.py change the port to your server's port
- Example:
+## Tutorial:
+
+1. Set up a Python server.
+2. Upload the server.py file and the templates folder to the server.
+3. Change the port in the last line of server.py to match your server's port.
+4. In line 7 of client.pyw, replace '127.0.0.1:5000' with your server's IP address and port.
+5. Start your server and build client.pyw (e.g., using pyinstaller).
+6. Share the generated client.exe file with your friend.
+
+### Requirements.txt for server:
 ```python
-app.run(host='0.0.0.0', port=20015)
-```
-4. In the 8th line of client.pyw, replace SERVERIP:PORT with ip:port/video_feed of your server.
-5. On line 9 of client.pyw, change SERVERIP:PORT to ip:port/screen_feed of your server.
- Example:
-```python
-remote_server_camera_url = 'http://verycoolIP:20015/video_feed'
-remote_server_screen_url = 'http://verycoolIP:20015/screen_feed'
-```
-6. Start your server and build client.pyw
-7. Send client.exe to your friend
-
-### requirements.txt for server:
-```python
-Flask==3.0.0
-opencv-python==4.8.1.78
-blinker==1.6.2
-itsdangerous==2.1.2
-MarkupSafe==2.1.3
-Jinja2==3.1.2
-click==8.1.7
-watchdog==3.0.0
-Werkzeug==3.0.0
-Pillow==10.0.1
+Flask
+opencv-python
+numpy
 ```
 
-
-### How to close it, 2 ways:
-1. In the task manager, close client.exe (or something similar)
+### How to close:
+1. Use the task manager to end the client.exe process (or its equivalent).
 2. Restart your computer.
 
-### Some errors:
-1. If client don't have a camera, the program will not work
-2. If client have bad internet, the prpgram will not work
-3. if client dont have camera program will not work
-4. if client.exe (client.py or client.pyw) is opened by two or more users, the program will not work (I think I will not fix it)
+### Known issues:
+None reported.
 
-That's all, sorry for my bad English.
-# AND REMEMBER THIS IS FOR EDUCATIONAL PURPOSES ONLY.
+# DISCLAIMER: THIS IS FOR EDUCATIONAL PURPOSES ONLY.

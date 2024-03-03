@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Feed</title>
+</head>
+<body>
+    <a href="/">
+        <button>Back</button>
+    </a>
+
+    <br><br>
+
+    <img id="camera-feed" src="/get_camera_frame?id={{ clientId }}" alt="Video Feed">
+
+    <!-- Поле ввода для скорости обновления -->
+    <label for="update-interval">Скорость обновления (в миллисекундах):</label>
+    <input type="number" id="update-interval" value="1000">
+
+    <br>
+    <br>
+
+    <img id="screen-feed" src="/get_screen_frame?id={{ clientId }}" alt="screen Feed">
+
+    <!-- Поле ввода для скорости обновления -->
+    <label for="screen-update-interval">Скорость обновления (в миллисекундах):</label>
+    <input type="number" id="screen-update-interval" value="1000">
+
+    <div>
+        <h1>Console: </h1>
+
+    </div>
+
+
+    <script>
+        // Функция для автоматического обновления изображения
+        function autoRefresh() {
+            const img = document.getElementById('camera-feed');
+            const intervalInput = document.getElementById('update-interval');
+
+            const updateInterval = parseInt(intervalInput.value);
+            img.src = "/get_camera_frame?id={{ clientId }}";
+
+            setTimeout(autoRefresh, updateInterval);
+        }
+        autoRefresh();
+
+        function screenAutoRefresh() {
+            const screenimg = document.getElementById('screen-feed');
+            const screenintervalInput = document.getElementById('screen-update-interval');
+            const screenupdateInterval = parseInt(screenintervalInput.value); // Получаем значение интервала из поля ввода
+            screenimg.src = "/get_screen_frame?id={{ clientId }}";
+
+            setTimeout(screenAutoRefresh, screenupdateInterval); // Обновляем изображение с учетом введенного интервала
+        }
+        screenAutoRefresh();
+
+    </script>
+</body>
+</html>
