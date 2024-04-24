@@ -4,20 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd7ee550-fcca-49a2-9aea-8ef065c2c661" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="b4739363-8bcb-4911-a7af-65468f183186" name="Changes" comment="initial. I will write changes soon">
+      <change afterPath="$PROJECT_DIR$/client/modules/game/sounds/click1.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/modules/game/sounds/click2.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/modules/game/sounds/click3.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client.pyw" beforeDir="false" afterPath="$PROJECT_DIR$/client.pyw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/client.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.pyw" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.pyw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/modules/discordgrabber.py" beforeDir="false" afterPath="$PROJECT_DIR$/client/modules/discordgrabber.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/modules/newdiscord.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clipboardloggerTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.pyw" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/client.pyw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/game.pyw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/server.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/templates/video_feed.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +28,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -50,9 +49,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
+  &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="2WIz3vnJYmM9bS1tl0OsA51g1zP" />
+  <component name="ProjectId" id="2fSjJJZxgOTsG65W5f2NmxtaRih" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -60,100 +59,33 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/NeWindows/Scripts/pythin/virus/Anubis/example&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/NeWindows/Scripts/pythin/virus/client/modules/game/sounds&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.splitter.proportion&quot;: &quot;0.16051364&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\NeWindows\Scripts\pythin\virus\Anubis\example" />
-      <recent name="C:\NeWindows\Scripts\pythin\virus" />
-      <recent name="C:\NeWindows\Scripts\pythin\virus\templates" />
-      <recent name="C:\NeWindows\Scripts\pythin\virus\output\data\config" />
+      <recent name="C:\NeWindows\Scripts\pythin\virus\client\modules\game\sounds" />
+      <recent name="C:\NeWindows\Scripts\pythin\virus\testingshit" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\NeWindows\Scripts\pythin\virus\Anubis" />
-      <recent name="C:\NeWindows\Scripts\pythin\virus\templates" />
-      <recent name="C:\NeWindows\Scripts\pythin\virus\clients" />
-      <recent name="C:\NeWindows\Scripts\pythin\virus\output" />
-      <recent name="C:\NeWindows\pythin\virus\templates" />
+      <recent name="C:\NeWindows\Scripts\pythin\virus\client\modules\game" />
+      <recent name="C:\NeWindows\Scripts\pythin\virus\testingshit" />
+      <recent name="C:\NeWindows\Scripts\pythin\virus\client" />
     </key>
   </component>
-  <component name="RunManager" selected="Flask server.virus">
-    <configuration name="client.pyw" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="virus" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.11" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/client.pyw" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="virus" type="PythonConfigurationType" factoryName="Python">
-      <module name="virus" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/server.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Flask (server.py)" type="Python.FlaskServer" temporary="true" nameIsGenerated="true">
-      <module name="virus" />
-      <option name="target" value="$PROJECT_DIR$/server.py" />
-      <option name="targetType" value="PATH" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="virus" type="Python.FlaskServer">
       <module name="virus" />
       <option name="target" value="$PROJECT_DIR$/server.py" />
@@ -169,96 +101,61 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Flask server.virus" />
-      <item itemvalue="Flask server.Flask (server.py)" />
-      <item itemvalue="Python.client.pyw" />
-      <item itemvalue="Python.virus" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Flask server.Flask (server.py)" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fd7ee550-fcca-49a2-9aea-8ef065c2c661" name="Changes" comment="" />
-      <created>1696434686191</created>
+      <changelist id="b4739363-8bcb-4911-a7af-65468f183186" name="Changes" comment="initial. I will write changes soon" />
+      <created>1713801308029</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1696434686191</updated>
-      <workItem from="1701544457883" duration="482000" />
-      <workItem from="1701544951042" duration="3045000" />
-      <workItem from="1701599046949" duration="4567000" />
-      <workItem from="1701681285742" duration="21000" />
-      <workItem from="1702326270874" duration="41000" />
-      <workItem from="1703093051181" duration="8767000" />
-      <workItem from="1703101943897" duration="2051000" />
-      <workItem from="1703145330771" duration="3462000" />
-      <workItem from="1705353420458" duration="148000" />
-      <workItem from="1705435155085" duration="550000" />
-      <workItem from="1705595487202" duration="257000" />
-      <workItem from="1706344479094" duration="2000" />
-      <workItem from="1709112056238" duration="1034000" />
-      <workItem from="1709284780780" duration="781000" />
-      <workItem from="1709319866390" duration="4666000" />
-      <workItem from="1709378751765" duration="19000" />
-      <workItem from="1709476175761" duration="1548000" />
+      <updated>1713801308029</updated>
+      <workItem from="1713801309162" duration="842000" />
+      <workItem from="1713803171764" duration="10151000" />
+      <workItem from="1713861464121" duration="2013000" />
+      <workItem from="1713881878212" duration="1120000" />
+      <workItem from="1713883053236" duration="242000" />
+      <workItem from="1713883306341" duration="8064000" />
+      <workItem from="1713896162157" duration="1635000" />
+      <workItem from="1713940773802" duration="2401000" />
+      <workItem from="1713947484318" duration="596000" />
     </task>
-    <task id="LOCAL-00001" summary="test">
-      <created>1696923485945</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1696923485945</updated>
-    </task>
-    <task id="LOCAL-00002" summary="test">
-      <created>1696923498504</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1696923498504</updated>
-    </task>
-    <task id="LOCAL-00003" summary="test">
-      <created>1696923549026</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1696923549026</updated>
-    </task>
-    <task id="LOCAL-00004" summary="test">
-      <created>1696923590212</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1696923590212</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="initial. I will write changes soon" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial. I will write changes soon" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/virus$virus.coverage" NAME="virus Coverage Results" MODIFIED="1709322080562" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/virus$Flask__server_py_.coverage" NAME="Flask (server.py) Coverage Results" MODIFIED="1709324746333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/virus$client_pyw.coverage" NAME="client.pyw Coverage Results" MODIFIED="1709322959158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$browsergrabber.coverage" NAME="browsergrabber Coverage Results" MODIFIED="1713885485242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/client/modules" />
+    <SUITE FILE_PATH="coverage/virus$wifistealerTest.coverage" NAME="wifistealerTest Coverage Results" MODIFIED="1713456474108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$discordTokenGrabber.coverage" NAME="discordTokenGrabber Coverage Results" MODIFIED="1713629176800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$pcinfo.coverage" NAME="pcinfo Coverage Results" MODIFIED="1713626434996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$Flask__testingwebsockets_server_py_.coverage" NAME="Flask (testingwebsockets/server.py) Coverage Results" MODIFIED="1713895607517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/virus$savefromantivirus.coverage" NAME="savefromantivirus Coverage Results" MODIFIED="1713886809038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/client/modules" />
+    <SUITE FILE_PATH="coverage/virus$wifipasswordsgraber.coverage" NAME="wifipasswordsgraber Coverage Results" MODIFIED="1713725224148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/client/modules" />
+    <SUITE FILE_PATH="coverage/virus$clientOnline.coverage" NAME="clientOnline Coverage Results" MODIFIED="1713630777726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop" />
+    <SUITE FILE_PATH="coverage/virus$pyinstxtractor.coverage" NAME="pyinstxtractor Coverage Results" MODIFIED="1713703445917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pyinstxtractor" />
+    <SUITE FILE_PATH="coverage/virus$virus.coverage" NAME="virus Coverage Results" MODIFIED="1713725066048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/virus$client_pyw.coverage" NAME="client.pyw Coverage Results" MODIFIED="1713942558038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/client" />
+    <SUITE FILE_PATH="coverage/virus$clipboardloggerTest.coverage" NAME="clipboardloggerTest Coverage Results" MODIFIED="1713464293643" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$Run_all.coverage" NAME="Run all Coverage Results" MODIFIED="1713295950995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/virus$addFolderAsException.coverage" NAME="addFolderAsException Coverage Results" MODIFIED="1713813819388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$.coverage" NAME=" Coverage Results" MODIFIED="1713290678494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/virus$test.coverage" NAME="test Coverage Results" MODIFIED="1712090663859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$clipboardTest.coverage" NAME="clipboardTest Coverage Results" MODIFIED="1713463650708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$client.coverage" NAME="client Coverage Results" MODIFIED="1713895610956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testingwebsockets" />
+    <SUITE FILE_PATH="coverage/virus$clipboardlogger.coverage" NAME="clipboardlogger Coverage Results" MODIFIED="1713894279569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/client/modules" />
+    <SUITE FILE_PATH="coverage/virus$game.coverage" NAME="game Coverage Results" MODIFIED="1713942318631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/client/modules/game" />
+    <SUITE FILE_PATH="coverage/virus$server.coverage" NAME="server Coverage Results" MODIFIED="1713895213741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testingwebsockets" />
+    <SUITE FILE_PATH="coverage/virus$newdiscord.coverage" NAME="newdiscord Coverage Results" MODIFIED="1713807239352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/client/modules" />
+    <SUITE FILE_PATH="coverage/virus$idinahui.coverage" NAME="idinahui Coverage Results" MODIFIED="1713370494315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$keyloggerTest.coverage" NAME="keyloggerTest Coverage Results" MODIFIED="1713464186174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/virus$Flask__server_py_.coverage" NAME="Flask (server.py) Coverage Results" MODIFIED="1713900440627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/virus$Flask__WebSocketTest_server_py_.coverage" NAME="Flask (WebSocketTest/server.py) Coverage Results" MODIFIED="1713463157876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/virus$pcinfoTest.coverage" NAME="pcinfoTest Coverage Results" MODIFIED="1713626460287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

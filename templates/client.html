@@ -96,10 +96,9 @@
 
         function clipboardAutoRefresh() {
             const h3Element = document.getElementById('clipboard');
-            setInterval(() => {
-                fetch('/get_clipboard?id={{ clientId }}')
-                    .then(response => {
-                        if (!response.ok) throw new Error('Network response was not ok');
+            fetch('/get_clipboard?id={{ clientId }}')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
                         return response.text();
                     })
                     .then(newText => {
@@ -110,7 +109,8 @@
                     .catch(error => {
                         console.error('Problem with fetch operation:', error);
                     });
-            }, 10000);
+
+            setTimeout(clipboardAutoRefresh, 5000);
         }
 
         clipboardAutoRefresh();

@@ -12,7 +12,7 @@ clients = {}
 
 @app.route('/', methods=['GET'])
 def mainSite():
-    return render_template('main.html', client = clients)
+    return render_template('main.html', client = clients, Maxclients = len(clients))
 
 @app.route('/client/<int:clientId>', methods=['GET'])
 def client1(clientId):
@@ -78,7 +78,8 @@ def send_screen():
         frame = cv2.imdecode(np.frombuffer(frame_data, np.uint8), cv2.IMREAD_COLOR)
 
         if frame is not None:
-            screen_last_frame[request.args.get('id')] = frame
+            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            screen_last_frame[request.args.get('id')] = frame_rgb
 
     return Response(status=200)
 
