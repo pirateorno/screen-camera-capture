@@ -6,7 +6,6 @@ import base64
 import os
 
 app = Flask(__name__)
-last_frame = {}
 screen_last_frame = {}
 
 clients = {}
@@ -80,13 +79,12 @@ def get_camera_frame():
 @app.route('/send_screen', methods=['POST'])
 def send_screen():
 	global screen_last_frame
-	if request.method == 'POST':
-		frame_data = request.data
-		frame = cv2.imdecode(np.frombuffer(frame_data, np.uint8), cv2.IMREAD_COLOR)
+	frame_data = request.data
+	frame = cv2.imdecode(np.frombuffer(frame_data, np.uint8), cv2.IMREAD_COLOR)
 
-		if frame is not None:
-			frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-			screen_last_frame[request.args.get('id')] = frame_rgb
+	if frame is not None:
+		frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+		screen_last_frame[request.args.get('id')] = frame_rgb
 
 	return Response(status=200)
 
