@@ -6,6 +6,7 @@ import base64
 import os
 
 app = Flask(__name__)
+last_frame = {}
 screen_last_frame = {}
 
 clients = {}

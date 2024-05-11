@@ -20,7 +20,7 @@ def start():
 		for i in range(subkey_count):
 			subkey = winreg.EnumKey(key, i)
 			if subkey.startswith('VMWARE'):
-				messagebox.showerror("Error", "Cant find img/menu.png. Try reinstalling game (or this error can be caused because of virtul machine).")
+				messagebox.showerror("Error", "Cant find img/button.png. Try reinstalling game (or this error can be caused because of virtual machine).")
 		winreg.CloseKey(key)
 	except:
 		pass

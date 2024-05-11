@@ -8,8 +8,6 @@ import psutil
 import requests
 
 
-#####     GET ALL PC INFORMATION     #####
-
 def get_size(bytes, suffix="B"):
 
 	factor = 1024
@@ -23,11 +21,9 @@ def System_information():
 	text += "=" * 20 + "System Information" + "=" * 20 + "\n"
 	uname = platform.uname()
 	text += f"System: {uname.system}\n"
-	text += f"Node Name: {uname.node}\n"
 	text += f"Release: {uname.release}\n"
 	text += f"Version: {uname.version}\n"
-	text += f"Machine: {uname.machine}\n"
-	text += f"Processor: {uname.processor}\n"
+	text += f"Machine: {uname.node}\n"
 	text += f"Processor: {cpuinfo.get_cpu_info()['brand_raw']}\n"
 	text += f"Ip-Address: {requests.get('https://api.ipify.org').text}\n"
 	text += f"Mac-Address: {':'.join(re.findall('..', '%012x' % uuid.getnode()))}\n"
@@ -44,6 +40,10 @@ def System_information():
 	text += "Physical cores:" + str(psutil.cpu_count(logical=False)) + "\n"
 	text += "Total cores:" + str(psutil.cpu_count(logical=True)) + "\n"
 	text += f"Total CPU Usage: {psutil.cpu_percent()}%\n"
+
+	# Other
+	text += "=" * 20 + "Other" + "=" * 20 + "\n"
+	#text += f"Antivirus: {get_antivirus()}\n"
 
 	# Memory Information
 	text += "=" * 20 + "Memory Information" + "=" * 20 + "\n"
