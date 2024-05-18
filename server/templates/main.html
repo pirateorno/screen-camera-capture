@@ -21,12 +21,11 @@
     </a>
     <h2>Clients:</h2>
 
-    {% for key in client %}
-        <a href="client/{{ key }}">
-            <button>Client {{ key }}</button>
+    {% for client in clients.values() %}
+        <a href="client/{{ client.clientId }}">
+            <button>Client {{ client.clientId }}</button>
         </a>
     {% endfor %}
-
 
 
 
