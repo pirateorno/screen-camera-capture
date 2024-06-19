@@ -7,6 +7,10 @@ import cpuinfo
 import psutil
 import requests
 
+import win32com.client
+import ctypes
+import os
+
 
 def get_size(bytes, suffix="B"):
 
@@ -15,6 +19,41 @@ def get_size(bytes, suffix="B"):
 		if bytes < factor:
 			return f"{bytes:.2f}{unit}{suffix}"
 		bytes /= factor
+
+
+def isAdmin():
+	try:
+		is_admin = (os.getuid() == 0)
+	except AttributeError:
+		is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
+	return is_admin
+
+def get_antivirus():
+	# Connect to the WMI service
+	objWMIService = win32com.client.Dispatch("WbemScripting.SWbemLocator")
+	swbemServices = objWMIService.ConnectServer(".", "ROOT\\SecurityCenter2")
+
+	# Execute the WMI query to get antivirus product information
+	colItems = swbemServices.ExecQuery("SELECT * FROM AntivirusProduct")
+
+	# Check the status of each antivirus product
+	for objItem in colItems:
+		name = objItem.displayName
+		state = objItem.productState
+		state_hex = f'{state:06x}'  # Format as hex with leading zeros
+
+		# Extract the middle two hex digits and check if enabled
+		enabled_hex = state_hex[2:4]
+		enabled_status = 'Enabled' if enabled_hex == '10' else 'Disabled'
+
+		# Extract the last two hex digits for update status
+		update_hex = state_hex[4:6]
+		update_status = 'Up to Date' if update_hex == '00' else 'Not Up to Date'
+
+		return name
+		#print(f'State (Hex): {state_hex.upper()}')
+		#print(f'Enabled Status: {enabled_status}')
+		#print(f'Update Status: {update_status}\n')
 
 def System_information():
 	text = ""
@@ -43,7 +82,8 @@ def System_information():
 
 	# Other
 	text += "=" * 20 + "Other" + "=" * 20 + "\n"
-	#text += f"Antivirus: {get_antivirus()}\n"
+	text += f"Antivirus: {get_antivirus()}\n"
+	text += f"Is admin: {isAdmin()}\n"
 
 	# Memory Information
 	text += "=" * 20 + "Memory Information" + "=" * 20 + "\n"

@@ -1,31 +1,14 @@
-# program to capture single image from webcam in python
+import psutil
 
-# importing OpenCV library 
-import cv2 as cv
+# Имя процесса, который нужно закрыть
+process_name = "opera.exe"
 
-# initialize the camera
-# If you have multiple camera connected with  
-# current device, assign a value in cam_port  
-# variable according to that 
-cam_port = 0
-cam = cv.VideoCapture(cam_port)
-
-# reading the input using the camera 
-result, image = cam.read()
-
-# If image will detected without any error,  
-# show result 
-if result:
-
-	# showing result, it take frame name and image
-	# output
-	cv.imshow("GeeksForGeeks", image)
-
-	# If keyboard interrupt occurs, destroy image
-	# window
-	cv.waitKey(0)
-	cv.destroyWindow("GeeksForGeeks")
-
-# If captured image is corrupted, moving to else part 
-else:
-	print("No image detected. Please! try again")
+# Перебираем все запущенные процессы
+for proc in psutil.process_iter(['pid', 'name']):
+    try:
+        # Проверяем имя процесса
+        if proc.info['name'] == process_name:
+            proc.terminate()  # Останавливаем процесс
+            print(f"Процесс {process_name} (PID {proc.info['pid']}) завершен.")
+    except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+        pass

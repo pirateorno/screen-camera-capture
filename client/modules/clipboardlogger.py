@@ -1,5 +1,3 @@
-from requests import post
-
 from pyperclip import paste
 from datetime import datetime
 

