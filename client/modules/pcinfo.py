@@ -76,9 +76,8 @@ def System_information():
 	# CPU Info
 	text += "=" * 20 + "CPU Info" + "=" * 20 + "\n"
 	# number of cores
-	text += "Physical cores:" + str(psutil.cpu_count(logical=False)) + "\n"
-	text += "Total cores:" + str(psutil.cpu_count(logical=True)) + "\n"
-	text += f"Total CPU Usage: {psutil.cpu_percent()}%\n"
+	text += "Physical cores: " + str(psutil.cpu_count(logical=False)) + "\n"
+	text += "Total cores: " + str(psutil.cpu_count(logical=True)) + "\n"
 
 	# Other
 	text += "=" * 20 + "Other" + "=" * 20 + "\n"

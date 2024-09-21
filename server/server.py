@@ -1,5 +1,6 @@
 from flask import Flask, request, Response, render_template
 from flask_socketio import SocketIO, emit
+from werkzeug.utils import secure_filename
 
 import cv2
 import numpy as np
@@ -37,7 +38,6 @@ def client1(clientId):
 @app.route('/send_console', methods=['POST'])
 def send_console():
 	user_input = request.json
-	print(f"User input: {user_input}")
 	socketio.emit('send_console', user_input)
 	return "aga"
 
@@ -146,21 +146,27 @@ def get_console():
 @app.route('/upload', methods=['POST'])
 def upload_file():
 	if 'file' not in request.files:
-		print(request.files)
-		return "No file part"
-	if 'uuid' in request.json:
-		return "No uuid"
+		return "No file part", 400
+	if 'uuid' not in request.form:
+		return "No uuid", 400
+
 	file = request.files['file']
 	if file.filename == '':
-		return "No file name specified"
+		return "No file name specified", 400
 
-	uuid = request.json['uuid']
+	uuid = request.form['uuid']
 	filename = secure_filename(file.filename)
 
-	os.path.join('upload', uuid, filename)
-	return "File uploaded successfully"
+	upload_folder = os.path.join('upload', uuid)
+	if not os.path.exists(upload_folder):
+		os.makedirs(upload_folder)
+
+	file_path = os.path.join(upload_folder, filename)
+	file.save(file_path)
+
+	return "File uploaded successfully", 200
 
 
 if __name__ == '__main__':
 	#app.run(host='0.0.0.0', port=5000, debug=True)
-	socketio.run(app, host='0.0.0.0', log_output=True)
+	socketio.run(app, host='0.0.0.0', port=5000)

